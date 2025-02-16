@@ -4,8 +4,17 @@ import { DataTable } from "@/components/ui/data-table/DataTable";
 import NewTeamModal from "@/components/teams/new-team-modal";
 import { useTeamsList } from "@/hooks/teams";
 import { teamsListColumns } from "@/components/teams/list-table-columns";
+import { DataTableQuery } from "@/utils/types/queries";
 
 export const Route = createFileRoute("/_app/_layout/teams/")({
+  validateSearch: (search: Record<string, unknown>): DataTableQuery => {
+    return search as DataTableQuery;
+  },
+  preSearchFilters: [
+    (search) => ({
+      ...search,
+    }),
+  ],
   component: RouteComponent,
 });
 

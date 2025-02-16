@@ -1,4 +1,5 @@
 import api from "@/api";
+import { SelectorType } from "@/schemas/shared";
 import { CreateUserType, UserType } from "@/schemas/users";
 import { DataTableQuery } from "@/utils/types/queries";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -41,3 +42,21 @@ export const useCreateUser = ({ onSuccess }: { onSuccess: () => void }) => {
     },
   });
 };
+
+async function fetchUsersListSelector() {
+  try {
+    const response = await api.get<SelectorType[]>("/users/selector-list");
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const useUsersListSelector = () =>
+  useQuery({
+    queryKey: ["users-list-selector"],
+    queryFn: () => fetchUsersListSelector(),
+    enabled: true,
+    refetchOnWindowFocus: false,
+  });

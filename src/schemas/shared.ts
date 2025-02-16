@@ -6,3 +6,8 @@ export const selectorSchema = z.object({
 });
 
 export type SelectorType = z.infer<typeof selectorSchema>;
+
+export const dateSchema = z.date({
+  invalid_type_error: "Fecha inválida",
+  required_error: "Requerido",
+});

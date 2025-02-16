@@ -9,7 +9,7 @@ function RouteComponent() {
   return (
     <div className="relative flex min-h-screen flex-col items-center">
       <SiteHeader />
-      <div className="h-full flex-1 container max-w-5xl px-2 py-8">
+      <div className="h-full flex-1 container max-w-7xl px-2 py-8">
         <Outlet />
       </div>
     </div>

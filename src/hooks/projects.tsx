@@ -1,5 +1,6 @@
 import api from "@/api";
 import { CreateProjectType, ProjectType } from "@/schemas/projects";
+import { SelectorType } from "@/schemas/shared";
 import { DataTableQuery } from "@/utils/types/queries";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -43,3 +44,21 @@ export const useCreateProject = ({ onSuccess }: { onSuccess: () => void }) => {
     },
   });
 };
+
+async function fetchProjectsListSelector() {
+  try {
+    const response = await api.get<SelectorType[]>("/projects/selector-list");
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const useProjectsListSelector = () =>
+  useQuery({
+    queryKey: ["projects-list-selector"],
+    queryFn: () => fetchProjectsListSelector(),
+    enabled: true,
+    refetchOnWindowFocus: false,
+  });
