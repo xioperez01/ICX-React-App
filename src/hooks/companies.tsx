@@ -1,5 +1,6 @@
 import api from "@/api";
 import { CompanyType, CreateCompanyType } from "@/schemas/companies";
+import { SelectorType } from "@/schemas/shared";
 import { DataTableQuery } from "@/utils/types/queries";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -43,3 +44,21 @@ export const useCreateCompany = ({ onSuccess }: { onSuccess: () => void }) => {
     },
   });
 };
+
+async function fetchCompaniesListSelector() {
+  try {
+    const response = await api.get<SelectorType[]>("/companies/selector-list");
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const useCompaniesListSelector = () =>
+  useQuery({
+    queryKey: ["companies-list-selector"],
+    queryFn: () => fetchCompaniesListSelector(),
+    enabled: true,
+    refetchOnWindowFocus: false,
+  });

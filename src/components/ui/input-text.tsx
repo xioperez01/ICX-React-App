@@ -9,7 +9,7 @@ const InputText = React.forwardRef<HTMLParagraphElement, InputProps>(
   ({ className, type, ...props }, ref) => {
     return (
       <p
-        className={cn("text-xs text-primary", className)}
+        className={cn("text-xs text-destructive", className)}
         ref={ref}
         {...props}
       />
