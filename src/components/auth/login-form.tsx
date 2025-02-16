@@ -7,10 +7,10 @@ import { LoginRequestType, loginRequestSchema } from "@/schemas/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useLoginWithPassword } from "@/hooks/auth";
-import { Callout } from "@/components/Callout";
 import { InputText } from "@/components/ui/input-text";
 
 import { Icons } from "@/components/icons";
+import { Callout } from "@/components/Callout";
 export default function LoginForm() {
   const {
     register,

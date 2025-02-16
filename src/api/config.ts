@@ -9,16 +9,22 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(
-  function (config) {
-    return {
-      ...config,
-      headers: {
-        ...config.headers,
-        //  Authorization: `Bearer ${localStorage.getItem("zensset_token")}`,
-        //  "z-uid": localStorage.getItem("zensset_uid"),
-        //  "z-wid": localStorage.getItem("zensset_wid"),
-      } as InternalAxiosRequestConfig["headers"],
-    };
+  async function (config) {
+    try {
+      const { data } = await supabase.auth.getSession();
+      const accessToken = data?.session?.access_token;
+
+      return {
+        ...config,
+        headers: {
+          ...config.headers,
+          Authorization: `Bearer ${accessToken}`,
+        } as InternalAxiosRequestConfig["headers"],
+      };
+    } catch (error) {
+      console.error("Error obteniendo el token de sesión:", error);
+      return config;
+    }
   },
   function (error) {
     return Promise.reject(error);

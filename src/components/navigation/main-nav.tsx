@@ -9,8 +9,8 @@ export function MainNav() {
   return (
     <div className="flex flex-row justify-between w-full">
       <Link to="/" className="flex items-center space-x-2">
-        <div className="flex justify-end font-title text-lg font-medium text-primary sm:text-xl">
-          ICX
+        <div className="flex justify-end font-title text-lg font-medium text-green-950 sm:text-xl min-w-max">
+          Prueba ICX
         </div>
       </Link>
 
