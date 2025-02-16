@@ -1,9 +1,34 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
+import Typography from "@/components/typography";
+import { DataTable } from "@/components/ui/data-table/DataTable";
+import NewTeamModal from "@/components/teams/new-team-modal";
+import { useTeamsList } from "@/hooks/teams";
+import { teamsListColumns } from "@/components/teams/list-table-columns";
 
-export const Route = createFileRoute('/_app/_layout/teams/')({
+export const Route = createFileRoute("/_app/_layout/teams/")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  return <div>Hello "/_app/_layout/teams/"!</div>
+  const query = Route.useSearch();
+
+  const { data, isLoading } = useTeamsList(query);
+  return (
+    <>
+      <div className="flex flex-col lg:flex-row justify-between">
+        <Typography.H2>Equipos</Typography.H2>
+        <NewTeamModal />
+      </div>
+      <div className="mt-4 sm:mt-6 lg:mt-10">
+        <DataTable
+          isLoading={isLoading}
+          detailPath="companies"
+          columns={teamsListColumns}
+          data={data?.data || []}
+          totalCount={data?.totalCount || 0}
+          dataTableFilters={[]}
+        />
+      </div>
+    </>
+  );
 }

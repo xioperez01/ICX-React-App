@@ -33,7 +33,7 @@ function RouteComponent() {
       <div className="mt-4 sm:mt-6 lg:mt-10">
         <DataTable
           isLoading={isLoading}
-          detailPath="companies"
+          //detailPath="companies"
           columns={companiesListColumns}
           data={data?.data || []}
           totalCount={data?.totalCount || 0}
