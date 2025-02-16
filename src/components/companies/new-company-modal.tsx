@@ -30,19 +30,31 @@ export default function NewCompanyModal() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<CreateCompanyType>({
     resolver: zodResolver(createCompanySchema),
   });
 
-  const mutate = useCreateCompany({ onSuccess: () => setIsOpen(false) });
+  const mutate = useCreateCompany({
+    onSuccess: () => {
+      setIsOpen(false);
+      reset();
+    },
+  });
 
   const onSubmit = async (data: CreateCompanyType) => {
     return mutate.mutateAsync({ data });
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog
+      open={isOpen}
+      onOpenChange={() => {
+        setIsOpen(!isOpen);
+        reset();
+      }}
+    >
       <DialogTrigger asChild>
         <Button size="sm">
           <Plus />
@@ -76,7 +88,7 @@ export default function NewCompanyModal() {
               </Callout>
             )}
             <DialogFooter>
-              <Button type="submit">
+              <Button type="submit" disabled={mutate.isPending}>
                 {mutate.isPending && <Icons.spinner />}
                 Crear
               </Button>
