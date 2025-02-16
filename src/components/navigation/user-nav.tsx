@@ -1,4 +1,4 @@
-import { LogOut, User as UserIcon } from "lucide-react";
+import { LogOut } from "lucide-react";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { supabase } from "@/utils/supabase";
+import { mainNav } from "@/utils/constants";
 
 export function UserNav({ user }: { user: { email: string } }) {
   const navigate = useNavigate();
@@ -42,12 +43,14 @@ export function UserNav({ user }: { user: { email: string } }) {
         <DropdownMenuSeparator />
 
         <DropdownMenuGroup>
-          <Link to="/">
-            <DropdownMenuItem>
-              <UserIcon className="mr-2 h-4 w-4" />
-              <span>Dash</span>
-            </DropdownMenuItem>
-          </Link>
+          {mainNav?.map((item, index) => (
+            <Link to={item?.href} key={index + item?.title}>
+              <DropdownMenuItem>
+                <item.icon className="mr-2 h-5 w-5" />
+                <span>{item?.title}</span>
+              </DropdownMenuItem>
+            </Link>
+          ))}
         </DropdownMenuGroup>
 
         <DropdownMenuSeparator />
@@ -58,7 +61,7 @@ export function UserNav({ user }: { user: { email: string } }) {
             navigate({ to: "/login" });
           }}
         >
-          <LogOut className="mr-2 h-4 w-4" />
+          <LogOut className="mr-2 h-5 w-5" />
           <span>Salir</span>
         </DropdownMenuItem>
       </DropdownMenuContent>

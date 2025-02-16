@@ -18,6 +18,10 @@ import { Route as AppLayoutImport } from './routes/_app/_layout'
 import { Route as authLayoutImport } from './routes/(auth)/_layout'
 import { Route as AppLayoutIndexImport } from './routes/_app/_layout/index'
 import { Route as AppLayoutUsersIndexImport } from './routes/_app/_layout/users/index'
+import { Route as AppLayoutTeamsIndexImport } from './routes/_app/_layout/teams/index'
+import { Route as AppLayoutProjectsIndexImport } from './routes/_app/_layout/projects/index'
+import { Route as AppLayoutCompaniesIndexImport } from './routes/_app/_layout/companies/index'
+import { Route as AppLayoutActivitiesIndexImport } from './routes/_app/_layout/activities/index'
 import { Route as authLayoutRegisterIndexImport } from './routes/(auth)/_layout/register/index'
 import { Route as authLayoutLoginIndexImport } from './routes/(auth)/_layout/login/index'
 
@@ -56,6 +60,30 @@ const AppLayoutIndexRoute = AppLayoutIndexImport.update({
 const AppLayoutUsersIndexRoute = AppLayoutUsersIndexImport.update({
   id: '/users/',
   path: '/users/',
+  getParentRoute: () => AppLayoutRoute,
+} as any)
+
+const AppLayoutTeamsIndexRoute = AppLayoutTeamsIndexImport.update({
+  id: '/teams/',
+  path: '/teams/',
+  getParentRoute: () => AppLayoutRoute,
+} as any)
+
+const AppLayoutProjectsIndexRoute = AppLayoutProjectsIndexImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => AppLayoutRoute,
+} as any)
+
+const AppLayoutCompaniesIndexRoute = AppLayoutCompaniesIndexImport.update({
+  id: '/companies/',
+  path: '/companies/',
+  getParentRoute: () => AppLayoutRoute,
+} as any)
+
+const AppLayoutActivitiesIndexRoute = AppLayoutActivitiesIndexImport.update({
+  id: '/activities/',
+  path: '/activities/',
   getParentRoute: () => AppLayoutRoute,
 } as any)
 
@@ -124,6 +152,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authLayoutRegisterIndexImport
       parentRoute: typeof authLayoutImport
     }
+    '/_app/_layout/activities/': {
+      id: '/_app/_layout/activities/'
+      path: '/activities'
+      fullPath: '/activities'
+      preLoaderRoute: typeof AppLayoutActivitiesIndexImport
+      parentRoute: typeof AppLayoutImport
+    }
+    '/_app/_layout/companies/': {
+      id: '/_app/_layout/companies/'
+      path: '/companies'
+      fullPath: '/companies'
+      preLoaderRoute: typeof AppLayoutCompaniesIndexImport
+      parentRoute: typeof AppLayoutImport
+    }
+    '/_app/_layout/projects/': {
+      id: '/_app/_layout/projects/'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof AppLayoutProjectsIndexImport
+      parentRoute: typeof AppLayoutImport
+    }
+    '/_app/_layout/teams/': {
+      id: '/_app/_layout/teams/'
+      path: '/teams'
+      fullPath: '/teams'
+      preLoaderRoute: typeof AppLayoutTeamsIndexImport
+      parentRoute: typeof AppLayoutImport
+    }
     '/_app/_layout/users/': {
       id: '/_app/_layout/users/'
       path: '/users'
@@ -138,11 +194,19 @@ declare module '@tanstack/react-router' {
 
 interface AppLayoutRouteChildren {
   AppLayoutIndexRoute: typeof AppLayoutIndexRoute
+  AppLayoutActivitiesIndexRoute: typeof AppLayoutActivitiesIndexRoute
+  AppLayoutCompaniesIndexRoute: typeof AppLayoutCompaniesIndexRoute
+  AppLayoutProjectsIndexRoute: typeof AppLayoutProjectsIndexRoute
+  AppLayoutTeamsIndexRoute: typeof AppLayoutTeamsIndexRoute
   AppLayoutUsersIndexRoute: typeof AppLayoutUsersIndexRoute
 }
 
 const AppLayoutRouteChildren: AppLayoutRouteChildren = {
   AppLayoutIndexRoute: AppLayoutIndexRoute,
+  AppLayoutActivitiesIndexRoute: AppLayoutActivitiesIndexRoute,
+  AppLayoutCompaniesIndexRoute: AppLayoutCompaniesIndexRoute,
+  AppLayoutProjectsIndexRoute: AppLayoutProjectsIndexRoute,
+  AppLayoutTeamsIndexRoute: AppLayoutTeamsIndexRoute,
   AppLayoutUsersIndexRoute: AppLayoutUsersIndexRoute,
 }
 
@@ -189,6 +253,10 @@ export interface FileRoutesByFullPath {
   '/': typeof AppLayoutIndexRoute
   '/login': typeof authLayoutLoginIndexRoute
   '/register': typeof authLayoutRegisterIndexRoute
+  '/activities': typeof AppLayoutActivitiesIndexRoute
+  '/companies': typeof AppLayoutCompaniesIndexRoute
+  '/projects': typeof AppLayoutProjectsIndexRoute
+  '/teams': typeof AppLayoutTeamsIndexRoute
   '/users': typeof AppLayoutUsersIndexRoute
 }
 
@@ -197,6 +265,10 @@ export interface FileRoutesByTo {
   '/': typeof AppLayoutIndexRoute
   '/login': typeof authLayoutLoginIndexRoute
   '/register': typeof authLayoutRegisterIndexRoute
+  '/activities': typeof AppLayoutActivitiesIndexRoute
+  '/companies': typeof AppLayoutCompaniesIndexRoute
+  '/projects': typeof AppLayoutProjectsIndexRoute
+  '/teams': typeof AppLayoutTeamsIndexRoute
   '/users': typeof AppLayoutUsersIndexRoute
 }
 
@@ -209,14 +281,36 @@ export interface FileRoutesById {
   '/_app/_layout/': typeof AppLayoutIndexRoute
   '/(auth)/_layout/login/': typeof authLayoutLoginIndexRoute
   '/(auth)/_layout/register/': typeof authLayoutRegisterIndexRoute
+  '/_app/_layout/activities/': typeof AppLayoutActivitiesIndexRoute
+  '/_app/_layout/companies/': typeof AppLayoutCompaniesIndexRoute
+  '/_app/_layout/projects/': typeof AppLayoutProjectsIndexRoute
+  '/_app/_layout/teams/': typeof AppLayoutTeamsIndexRoute
   '/_app/_layout/users/': typeof AppLayoutUsersIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/' | '/login' | '/register' | '/users'
+  fullPaths:
+    | ''
+    | '/'
+    | '/login'
+    | '/register'
+    | '/activities'
+    | '/companies'
+    | '/projects'
+    | '/teams'
+    | '/users'
   fileRoutesByTo: FileRoutesByTo
-  to: '' | '/' | '/login' | '/register' | '/users'
+  to:
+    | ''
+    | '/'
+    | '/login'
+    | '/register'
+    | '/activities'
+    | '/companies'
+    | '/projects'
+    | '/teams'
+    | '/users'
   id:
     | '__root__'
     | '/_app'
@@ -226,6 +320,10 @@ export interface FileRouteTypes {
     | '/_app/_layout/'
     | '/(auth)/_layout/login/'
     | '/(auth)/_layout/register/'
+    | '/_app/_layout/activities/'
+    | '/_app/_layout/companies/'
+    | '/_app/_layout/projects/'
+    | '/_app/_layout/teams/'
     | '/_app/_layout/users/'
   fileRoutesById: FileRoutesById
 }
@@ -279,6 +377,10 @@ export const routeTree = rootRoute
       "parent": "/_app",
       "children": [
         "/_app/_layout/",
+        "/_app/_layout/activities/",
+        "/_app/_layout/companies/",
+        "/_app/_layout/projects/",
+        "/_app/_layout/teams/",
         "/_app/_layout/users/"
       ]
     },
@@ -293,6 +395,22 @@ export const routeTree = rootRoute
     "/(auth)/_layout/register/": {
       "filePath": "(auth)/_layout/register/index.tsx",
       "parent": "/(auth)/_layout"
+    },
+    "/_app/_layout/activities/": {
+      "filePath": "_app/_layout/activities/index.tsx",
+      "parent": "/_app/_layout"
+    },
+    "/_app/_layout/companies/": {
+      "filePath": "_app/_layout/companies/index.tsx",
+      "parent": "/_app/_layout"
+    },
+    "/_app/_layout/projects/": {
+      "filePath": "_app/_layout/projects/index.tsx",
+      "parent": "/_app/_layout"
+    },
+    "/_app/_layout/teams/": {
+      "filePath": "_app/_layout/teams/index.tsx",
+      "parent": "/_app/_layout"
     },
     "/_app/_layout/users/": {
       "filePath": "_app/_layout/users/index.tsx",
