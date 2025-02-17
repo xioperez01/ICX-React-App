@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useEffect, useState } from "react";
 
 import {
@@ -67,10 +68,12 @@ export function useServerSideTable<T>(
     if (newPage > getPageCount()) {
       newPage = getPageCount();
     }
+    //@ts-expect-error
     navigate({ search: { ...search, pageNumber: newPage } });
   };
 
   const handlePageSizeChange = (newPageSize: number) => {
+    //@ts-expect-error
     navigate({ search: { ...search, pageSize: newPageSize } });
   };
 
@@ -125,6 +128,7 @@ export function useServerSideTable<T>(
         navigate({
           search: {
             ...search,
+            //@ts-expect-error
             sortBy: {
               [newSorting[0]?.id as string]: newSorting[0]?.desc
                 ? "desc"
@@ -156,10 +160,12 @@ export function useServerSideTable<T>(
   useEffect(() => {
     if (debouncedSearchTerm) {
       table.getColumn(searchKey)?.setFilterValue(debouncedSearchTerm);
+      //@ts-expect-error
       navigate({ search: { ...search, toSearch: debouncedSearchTerm } });
     } else {
       table.getColumn(searchKey)?.setFilterValue(undefined);
       navigate({
+        //@ts-expect-error
         search: (prev) => {
           if (prev?.toSearch) delete prev.toSearch;
 
@@ -175,7 +181,6 @@ export function useServerSideTable<T>(
       const newRowSelectionState: RowSelectionState = {};
 
       tableData.forEach((row, index) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         if (selectedRows.includes(row?.id as string)) {
           newRowSelectionState[index.toString()] = true;

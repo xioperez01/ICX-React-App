@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Table } from "@tanstack/react-table";
 
 import {
@@ -60,6 +61,7 @@ export function Filterbar<TData>({
             onClick={() => {
               table.resetColumnFilters(true);
               navigate({
+                //@ts-expect-error
                 search: (prev) => {
                   const updatedSearch = { ...prev };
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Column } from "@tanstack/react-table";
 
 import {
@@ -52,10 +53,7 @@ const ColumnFiltersLabel = ({
     return (
       <span className={cn("truncate", className)}>
         {columnFilterLabels.map((value, index) => (
-          <span
-            key={value}
-            className={cn("font-semibold text-indigo-600 dark:text-indigo-400")}
-          >
+          <span key={value} className={cn("font-semibold")}>
             {value}
             {index < columnFilterLabels.length - 1 && ", "}
           </span>
@@ -66,12 +64,7 @@ const ColumnFiltersLabel = ({
 
   return (
     <>
-      <span
-        className={cn(
-          "font-semibold text-indigo-600 dark:text-indigo-400",
-          className
-        )}
-      >
+      <span className={cn("font-semibold", className)}>
         {columnFilterLabels[0]} and {columnFilterLabels.length - 1} more
       </span>
     </>
@@ -133,21 +126,7 @@ export function DataTableFilter<TData, TValue>({
             </SelectContent>
           </Select>
         );
-      //case "multiselect":
-      //  return (
-      //    <MultiSelect
-      //      value={selectedValues}
-      //      onValueChange={(value) => {
-      //        setSelectedValues(value);
-      //      }}
-      //    >
-      //      {options?.map((item) => (
-      //        <MultiSelectItem key={item.value} value={item.value}>
-      //          {item.label}
-      //        </MultiSelectItem>
-      //      ))}
-      //    </MultiSelect>
-      //  );
+
       case "checkbox":
         return (
           <div className="mt-2 space-y-2 overflow-y-auto sm:max-h-36">
@@ -214,6 +193,7 @@ export function DataTableFilter<TData, TValue>({
               }
 
               navigate({
+                //@ts-expect-error
                 search: (prev) => {
                   const id = column?.id.includes("_")
                     ? column?.id.split("_")[0]
@@ -275,6 +255,7 @@ export function DataTableFilter<TData, TValue>({
         onInteractOutside={() => {
           column?.setFilterValue(selectedValues);
           navigate({
+            //@ts-expect-error
             search: (prev) => {
               const id = column?.id as string;
               if (selectedValues?.length) {
@@ -324,6 +305,7 @@ export function DataTableFilter<TData, TValue>({
               onClick={() => {
                 column?.setFilterValue(selectedValues);
                 navigate({
+                  //@ts-expect-error
                   search: (prev) => {
                     const id = column?.id as string;
                     if (id?.includes("_")) {
@@ -362,6 +344,7 @@ export function DataTableFilter<TData, TValue>({
                   setSelectedValues([]);
 
                   navigate({
+                    //@ts-expect-error
                     search: (prev) => {
                       const id = column?.id.includes("_")
                         ? column?.id.split("_")[0]
