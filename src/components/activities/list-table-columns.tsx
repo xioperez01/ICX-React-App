@@ -2,6 +2,7 @@ import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "@/components/ui/data-table/DataTableColumnHeader";
 
 import { ActivityType, ActivityTypeOptions } from "@/schemas/activities";
+import { DataTableFilter } from "../ui/data-table/DataTableFilterbar";
 
 const columnHelper = createColumnHelper<ActivityType>();
 
@@ -94,3 +95,16 @@ export const activitiesListColumns = [
     },
   }),
 ] as ColumnDef<ActivityType>[];
+
+export const activityFiltersFields = () =>
+  [
+    {
+      field: "type",
+      title: "Tipo",
+      type: "checkbox",
+      options: Object.entries(ActivityTypeOptions).map(([key, value]) => ({
+        value: key,
+        label: value,
+      })),
+    },
+  ] as DataTableFilter[];

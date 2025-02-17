@@ -6,6 +6,7 @@ import NewActivityModal from "@/components/activities/new-activity-modal";
 import { DataTable } from "@/components/ui/data-table/DataTable";
 import {
   activitiesListColumns,
+  activityFiltersFields,
   projectDataKeys,
 } from "@/components/activities/list-table-columns";
 import { useState } from "react";
@@ -51,7 +52,7 @@ function RouteComponent() {
           columns={activitiesListColumns}
           data={data?.data || []}
           totalCount={data?.totalCount || 0}
-          dataTableFilters={[]}
+          dataTableFilters={activityFiltersFields()}
           clickOnRow={(row) => setDetailData(row)}
         />
       </div>
