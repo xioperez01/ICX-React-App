@@ -35,7 +35,7 @@ export default function LoginForm() {
             {...register("email")}
             id="email"
             type="email"
-            placeholder="m@example.com"
+            placeholder="Ej. m@example.com"
             required
           />
           {errors.email && <InputText>{errors.email.message}</InputText>}
@@ -55,6 +55,7 @@ export default function LoginForm() {
             id="password"
             type="password"
             required
+            placeholder="********"
           />
           {errors.password && <InputText>{errors.password.message}</InputText>}
         </div>

@@ -31,7 +31,7 @@ export default function CompanySelector({
       }}
     >
       <SelectTrigger>
-        <SelectValue placeholder="Selecciona una compañía..." />
+        <SelectValue placeholder="Ej. Compañía A" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>

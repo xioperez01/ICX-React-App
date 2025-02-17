@@ -35,7 +35,7 @@ export function DatePicker({
           {date ? (
             format(date, "PPP", { locale: es })
           ) : (
-            <span>Selecciona una fecha</span>
+            <span>{`Ej. ${format(new Date(), "PPP", { locale: es })}`}</span>
           )}
         </Button>
       </PopoverTrigger>

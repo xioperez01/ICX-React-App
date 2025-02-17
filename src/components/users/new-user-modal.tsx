@@ -70,7 +70,7 @@ export default function NewUserModal() {
         <DialogHeader>
           <DialogTitle>Agregar usuario</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
+            Agrega un nuevo usuario a la lista
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -81,7 +81,7 @@ export default function NewUserModal() {
                 {...register("firstName")}
                 id="name"
                 type="text"
-                placeholder="Angie"
+                placeholder="Ej. Angie"
                 required
               />
               {errors.firstName && (
@@ -95,7 +95,7 @@ export default function NewUserModal() {
                 {...register("lastName")}
                 id="description"
                 type="text"
-                placeholder="Perez"
+                placeholder="Ej. Perez"
                 required
               />
               {errors.lastName && (

@@ -31,7 +31,7 @@ export default function ProjectSelector({
       }}
     >
       <SelectTrigger>
-        <SelectValue placeholder="Selecciona un proyecto..." />
+        <SelectValue placeholder="Ej. Proyecto A" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>

@@ -30,7 +30,7 @@ export default function TeamSelector({
       }}
     >
       <SelectTrigger>
-        <SelectValue placeholder="Selecciona un equipo..." />
+        <SelectValue placeholder="Ej. Desarrollo" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>

@@ -31,7 +31,7 @@ export default function UserSelector({
       }}
     >
       <SelectTrigger>
-        <SelectValue placeholder="Selecciona un usuario..." />
+        <SelectValue placeholder="Ej. Angie Perez" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>

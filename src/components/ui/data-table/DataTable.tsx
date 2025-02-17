@@ -16,7 +16,6 @@ import { DataTablePagination } from "@/components/ui/data-table/DataTablePaginat
 
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
-import { useLocation, useNavigate } from "@tanstack/react-router";
 import { useServerSideTable } from "@/hooks/useServerSideTable";
 
 interface DataTableProps<TData> {
@@ -24,7 +23,7 @@ interface DataTableProps<TData> {
   data: TData[];
   totalCount: number;
   dataTableFilters: DataTableFilter[];
-  detailPath?: string;
+
   isLoading: boolean;
 }
 
@@ -33,12 +32,9 @@ export function DataTable<TData extends { id?: string }>({
   data,
   dataTableFilters,
   totalCount,
-  detailPath,
+
   isLoading,
 }: DataTableProps<TData>) {
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
-
   const {
     getPageCount,
     handlePageChange,
@@ -52,12 +48,7 @@ export function DataTable<TData extends { id?: string }>({
     setTitleSearch,
     page,
     pageSize,
-  } = useServerSideTable(
-    data,
-    columns,
-    totalCount,
-    detailPath === "noticesId" ? "description" : "name"
-  );
+  } = useServerSideTable(data, columns, totalCount);
 
   return (
     <>
@@ -109,17 +100,6 @@ export function DataTable<TData extends { id?: string }>({
                     table.getRowModel().rows.map((row) => (
                       <TableRow
                         key={row.id}
-                        onClick={() => {
-                          if (detailPath)
-                            navigate({
-                              to: `${pathname}/$${detailPath as string}`,
-                              params: {
-                                [detailPath as string]: row.original
-                                  .id as string,
-                              },
-                              search: (prev) => ({ ...prev }),
-                            });
-                        }}
                         className="group select-none hover:bg-gray-50 hover:dark:bg-gray-900"
                       >
                         {row.getVisibleCells().map((cell, index) => (

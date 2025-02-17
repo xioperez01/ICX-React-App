@@ -34,7 +34,7 @@ export default function ActivityTypeSelector({
       }}
     >
       <SelectTrigger>
-        <SelectValue placeholder="Selecciona un tipo..." />
+        <SelectValue placeholder="Ej. Diseño" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>

@@ -65,7 +65,7 @@ export default function NewCompanyModal() {
         <DialogHeader>
           <DialogTitle>Agregar compañía</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
+            Agrega una nueva compañía a la lista
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -76,7 +76,7 @@ export default function NewCompanyModal() {
                 {...register("name")}
                 id="name"
                 type="text"
-                placeholder="Nueva compañía"
+                placeholder="Ej. Nueva compañía"
                 required
               />
               {errors.name && <InputText>{errors.name.message}</InputText>}

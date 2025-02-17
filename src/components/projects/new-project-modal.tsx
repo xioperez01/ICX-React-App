@@ -69,7 +69,7 @@ export default function NewProjectModal() {
         <DialogHeader>
           <DialogTitle>Agregar proyecto</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
+            Agrea un nuevo proyecto a la lista
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -80,7 +80,7 @@ export default function NewProjectModal() {
                 {...register("name")}
                 id="name"
                 type="text"
-                placeholder="Nuevo proyecto"
+                placeholder="Ej. Nuevo proyecto"
                 required
               />
               {errors.name && <InputText>{errors.name.message}</InputText>}
@@ -92,7 +92,7 @@ export default function NewProjectModal() {
                 {...register("description")}
                 id="description"
                 type="text"
-                placeholder="Descripción del nuevo proyecto..."
+                placeholder="Ej. Descripción del nuevo proyecto..."
                 required
               />
               {errors.description && (

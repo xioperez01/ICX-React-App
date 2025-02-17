@@ -73,7 +73,7 @@ export default function NewActivityModal() {
         <DialogHeader>
           <DialogTitle>Agregar actividad</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
+            Resgistra la actividad realizada
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -94,7 +94,7 @@ export default function NewActivityModal() {
                 {...register("description")}
                 id="name"
                 type="text"
-                placeholder="Desarrollo de herramientas internas..."
+                placeholder="Ej. Desarrollo de herramientas internas..."
                 required
               />
               {errors.description && (

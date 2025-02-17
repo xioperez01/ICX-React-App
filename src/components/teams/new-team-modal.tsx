@@ -66,7 +66,7 @@ export default function NewTeamModal() {
         <DialogHeader>
           <DialogTitle>Agregar Equipo</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
+            Agregue un nuevo equipo a la lista
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -77,7 +77,7 @@ export default function NewTeamModal() {
                 {...register("name")}
                 id="name"
                 type="text"
-                placeholder="Nuevo equipo"
+                placeholder="Ej. Desarrollo"
                 required
               />
               {errors.name && <InputText>{errors.name.message}</InputText>}
