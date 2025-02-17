@@ -4,6 +4,12 @@ import { DataTableColumnHeader } from "@/components/ui/data-table/DataTableColum
 
 const columnHelper = createColumnHelper<CompanyType>();
 
+
+export const teamDataKeys = [
+  { label: "Nombre", key: "name",  },
+
+];
+
 export const teamsListColumns = [
   columnHelper.accessor("name", {
     header: ({ column }) => (

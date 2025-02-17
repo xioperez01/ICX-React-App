@@ -4,6 +4,11 @@ import { UserType } from "@/schemas/users";
 
 const columnHelper = createColumnHelper<UserType>();
 
+export const userDataKeys = [
+  { label: "Nombre", key: "name" },
+  { label: "Equipo", key: "team.name" },
+];
+
 export const usersListColumns = [
   columnHelper.accessor("name", {
     header: ({ column }) => (

@@ -4,7 +4,13 @@ import Typography from "@/components/typography";
 import { useActivityList } from "@/hooks/activities";
 import NewActivityModal from "@/components/activities/new-activity-modal";
 import { DataTable } from "@/components/ui/data-table/DataTable";
-import { activitiesListColumns } from "@/components/activities/list-table-columns";
+import {
+  activitiesListColumns,
+  projectDataKeys,
+} from "@/components/activities/list-table-columns";
+import { useState } from "react";
+import { ActivityType } from "@/schemas/activities";
+import EntityDetailModal from "@/components/entity-detail-modal";
 
 export const Route = createFileRoute("/_app/_layout/activities/")({
   validateSearch: (search: Record<string, unknown>): DataTableQuery => {
@@ -22,8 +28,19 @@ function RouteComponent() {
   const query = Route.useSearch();
 
   const { data, isLoading } = useActivityList(query);
+
+  const [detailData, setDetailData] = useState<ActivityType | undefined>();
+
   return (
     <>
+      <EntityDetailModal
+        isOpen={!!detailData}
+        onOpenChange={() => setDetailData(undefined)}
+        data={detailData}
+        entity="Actividad"
+        keys={projectDataKeys}
+      />
+
       <div className="flex flex-col lg:flex-row justify-between">
         <Typography.H2>Actividades</Typography.H2>
         <NewActivityModal />
@@ -35,6 +52,7 @@ function RouteComponent() {
           data={data?.data || []}
           totalCount={data?.totalCount || 0}
           dataTableFilters={[]}
+          clickOnRow={(row) => setDetailData(row)}
         />
       </div>
     </>

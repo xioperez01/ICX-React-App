@@ -4,7 +4,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import Typography from "@/components/typography";
 import NewProjectModal from "@/components/projects/new-project-modal";
 import { DataTable } from "@/components/ui/data-table/DataTable";
-import { projectsListColumns } from "@/components/projects/list-table-columns";
+import {
+  projectsDataKeys,
+  projectsListColumns,
+} from "@/components/projects/list-table-columns";
+import { ProjectType } from "@/schemas/projects";
+import { useState } from "react";
+import EntityDetailModal from "@/components/entity-detail-modal";
 
 export const Route = createFileRoute("/_app/_layout/projects/")({
   validateSearch: (search: Record<string, unknown>): DataTableQuery => {
@@ -23,8 +29,17 @@ function RouteComponent() {
 
   const { data, isLoading } = useProjectsList(query);
 
+  const [detailData, setDetailData] = useState<ProjectType | undefined>();
+
   return (
     <>
+      <EntityDetailModal
+        isOpen={!!detailData}
+        onOpenChange={() => setDetailData(undefined)}
+        data={detailData}
+        entity="Proyecto"
+        keys={projectsDataKeys}
+      />
       <div className="flex flex-col lg:flex-row justify-between">
         <Typography.H2>Proyectos</Typography.H2>
         <NewProjectModal />
@@ -36,6 +51,7 @@ function RouteComponent() {
           data={data?.data || []}
           totalCount={data?.totalCount || 0}
           dataTableFilters={[]}
+          clickOnRow={(row) => setDetailData(row)}
         />
       </div>
     </>

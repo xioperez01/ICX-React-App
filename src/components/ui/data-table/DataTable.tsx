@@ -23,8 +23,8 @@ interface DataTableProps<TData> {
   data: TData[];
   totalCount: number;
   dataTableFilters: DataTableFilter[];
-
   isLoading: boolean;
+  clickOnRow?: (row: TData) => void;
 }
 
 export function DataTable<TData extends { id?: string }>({
@@ -32,8 +32,8 @@ export function DataTable<TData extends { id?: string }>({
   data,
   dataTableFilters,
   totalCount,
-
   isLoading,
+  clickOnRow,
 }: DataTableProps<TData>) {
   const {
     getPageCount,
@@ -101,6 +101,11 @@ export function DataTable<TData extends { id?: string }>({
                       <TableRow
                         key={row.id}
                         className="group select-none hover:bg-gray-50 hover:dark:bg-gray-900"
+                        onClick={() => {
+                          if (clickOnRow) {
+                            clickOnRow(row.original);
+                          }
+                        }}
                       >
                         {row.getVisibleCells().map((cell, index) => (
                           <TableCell

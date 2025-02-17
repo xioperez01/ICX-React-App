@@ -5,6 +5,15 @@ import { ActivityType, ActivityTypeOptions } from "@/schemas/activities";
 
 const columnHelper = createColumnHelper<ActivityType>();
 
+export const projectDataKeys = [
+  { label: "Tipo", key: "type", enumOptions: ActivityTypeOptions },
+  { label: "Descripción", key: "description" },
+  { label: "Duración (mins)", key: "duration" },
+  { label: "Fecha", key: "date" },
+  { label: "Proyecto", key: "project.name" },
+  { label: "Usuario", key: "user.name" },
+];
+
 export const activitiesListColumns = [
   columnHelper.accessor("type", {
     header: ({ column }) => (

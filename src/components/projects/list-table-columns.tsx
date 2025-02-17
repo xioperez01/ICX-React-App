@@ -4,6 +4,12 @@ import { ProjectType } from "@/schemas/projects";
 
 const columnHelper = createColumnHelper<ProjectType>();
 
+export const projectsDataKeys = [
+  { label: "Nombre", key: "name" },
+  { label: "Descripción", key: "description" },
+  { label: "Compañía", key: "company.name" },
+];
+
 export const projectsListColumns = [
   columnHelper.accessor("name", {
     header: ({ column }) => (
