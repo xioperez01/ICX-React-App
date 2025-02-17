@@ -1,3 +1,6 @@
+import DashboardCarts from "@/components/dashboard/charts";
+import DashboardKpis from "@/components/dashboard/kpis";
+
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_app/_layout/")({
@@ -5,5 +8,11 @@ export const Route = createFileRoute("/_app/_layout/")({
 });
 
 function RouteComponent() {
-  return <section className="container grid items-center gap-10">main</section>;
+  return (
+    <div className="flex flex-col gap-6">
+      <DashboardKpis />
+
+      <DashboardCarts />
+    </div>
+  );
 }
